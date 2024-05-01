@@ -1,0 +1,77 @@
+{% extends 'admin_navbar.html' %}
+
+{% block title %} Customers List {% endblock %}
+{% block profileactive %} active {% endblock profileactive %}
+
+{% block css %}
+<style>
+    body {
+        background: linear-gradient(to right, #D7C49EFF, rgb(34, 33, 33));
+        min-height: 100vh;
+    }
+
+    .card {
+        background-color: #ffffff; /* White background */
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .table th,
+    .table td {
+        border-top: none;
+        color: #343a40; /* Dark text */
+    }
+
+    .table th {
+        background-color: #007bff; /* Blue header */
+        color: #ffffff; /* White text */
+    }
+
+    .btn-warning {
+        background-color: #ffc107; /* Yellow button */
+        border-color: #ffc107; /* Yellow border */
+        color: #212529; /* Dark text */
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800; /* Darker yellow on hover */
+        border-color: #e0a800; /* Darker yellow border on hover */
+        color: #212529; /* Dark text */
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>All Customers ({{customer_count}})</h5>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Email Id</th>
+                        <th>Phone No</th>
+                        <th>Address</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        <td>{{customer.name}}</td>
+                        <td>{{customer.email}}</td>
+                        <td>{{customer.phone}}</td>
+                        <td>{{customer.address}}</td>
+                        <td><a href="/customers_list/orders_{{customer.id}}/" class="btn btn-warning">View Orders</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

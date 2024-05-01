@@ -1,0 +1,86 @@
+{% extends 'admin_navbar.html' %}
+
+{% block title %} Add Books {% endblock %}
+{% block profileactive %} active {% endblock profileactive %}
+
+{% block css %}
+<style>
+    body {
+        background: linear-gradient(to right, #D7C49EFF, rgb(34, 33, 33));
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    .card {
+        background-color: #ffffff; /* White background */
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px; /* Add space between cards */
+    }
+
+    .card-header {
+        background-color: #007bff; /* Blue header */
+        color: #ffffff; /* White text */
+        border-bottom: none; /* Remove bottom border */
+        border-top-left-radius: 10px; /* Rounded corners */
+        border-top-right-radius: 10px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .table {
+        background-color: #f8f9fa; /* Light gray table background */
+    }
+
+    .table th, .table td {
+        border: none; /* Remove table borders */
+    }
+
+    .btn-danger {
+        background-color: #dc3545; /* Red delete button */
+        color: #ffffff; /* White text */
+        border: none; /* Remove button border */
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333; /* Darker red on hover */
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">All Books Request ({{requested_books_count}})</h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Book Name</th>
+                            <th>Author</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in requested_book %}
+                        <tr>
+                            <td>{{i.user}}</td>
+                            <td>{{i.book_name}}</td>
+                            <td>{{i.author}}</td>
+                            <td><a href="/delete_requested_books/delete_{{i.id}}/" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

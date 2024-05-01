@@ -1,0 +1,68 @@
+{% extends 'admin_navbar.html' %}
+
+{% block title %} Books {% endblock %}
+
+{% block css %}
+<style>
+    body {
+        background: linear-gradient(to right, #D7C49EFF, rgb(34, 33, 33));
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff; /* White background */
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+     h1 {
+        color: #343a40; /* Dark heading */
+        text-align: center;
+        margin-bottom: 20px; /* Add margin below the heading */
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    button[type="submit"] {
+        background-color: #007bff; /* Blue submit button */
+        color: #ffffff; /* White text */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    .btn-light {
+        background-color: #f8f9fa; /* Light gray button */
+        color: #212529; /* Dark text */
+        border: 1px solid #ced4da; /* Light gray border */
+    }
+
+    .btn-light:hover {
+        background-color: #e2e6ea; /* Darker gray on hover */
+        color: #212529; /* Dark text */
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container">
+  <h1>Add Books</h1>
+    <form action="/add_books/" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-light">Submit</button>
+    </form>
+</div>
+{% endblock %}
